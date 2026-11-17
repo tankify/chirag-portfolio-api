@@ -22,3 +22,17 @@ variable.
 Import this repository as a new Vercel project. Set `FRONTEND_ORIGIN` to the
 production portfolio URL, for example `https://chirag-portfolio-zeta-nine.vercel.app`,
 then deploy. The function is available at `/api/health` on the new project URL.
+
+## Python verification endpoint
+
+`GET /api/python-check` returns a small JSON response confirming that the
+Python runtime is working:
+
+```json
+{
+  "ok": true,
+  "runtime": "python",
+  "service": "chirag-portfolio-api",
+  "message": "Python endpoint is running."
+}
+```
