@@ -36,3 +36,22 @@ Python runtime is working:
   "message": "Python endpoint is running."
 }
 ```
+
+## Portfolio contact form (Gmail SMTP)
+
+`POST /api/contact` accepts JSON with `name`, `email`, `message`, and an optional
+`website` honeypot field. It validates input and sends the message using Gmail
+SMTP; the sender's email is set as `Reply-To`. The API returns a generic success
+for filled honeypot submissions. Configure these Vercel environment variables:
+
+- `FRONTEND_ORIGIN`: exact deployed portfolio origin (for example, `https://chirag-portfolio-zeta-nine.vercel.app`)
+- `SMTP_HOST`: `smtp.gmail.com`
+- `SMTP_PORT`: `587`
+- `SMTP_USERNAME`: Gmail address used to send mail
+- `SMTP_APP_PASSWORD`: Google App Password for that account (keep this secret)
+- `CONTACT_TO_EMAIL`: inbox that receives messages, normally `tankchirag22@gmail.com`
+
+Use an App Password, not the Gmail account password. Keep credentials out of
+Git and redeploy the API after adding or changing environment variables. The
+endpoint limits request size and field lengths and checks browser origins; add a
+shared rate limiter before exposing it to significant public traffic.
